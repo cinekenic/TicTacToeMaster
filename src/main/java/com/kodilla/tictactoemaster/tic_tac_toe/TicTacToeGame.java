@@ -12,9 +12,23 @@ public class TicTacToeGame {
 
 
         Board board = new Board();
+        char currentPlayer = 'X';
+        boolean gameOn = true;
+
+
+        while (gameOn) {
         board.printBoard();
+        System.out.println("Player " + currentPlayer + "'s turn");
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
 
-
-
+            if (board.makeMove(row, col, currentPlayer)) {
+                if(board.checkWin(currentPlayer)) {
+                    board.printBoard();
+                    System.out.println("Gracz " + currentPlayer + " wygrywa!");
+                    gameOn = false;
+                }
+            }
+        }
     }
 }

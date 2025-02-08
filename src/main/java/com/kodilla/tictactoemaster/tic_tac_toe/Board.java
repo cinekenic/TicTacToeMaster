@@ -26,4 +26,16 @@ class Board {
             System.out.println("\n-------------");
         }
     }
+
+    public boolean makeMove(int row, int col, char player) {
+
+        return false;
+    }
+
+    public boolean checkWin(char player) {
+
+        return false;
+    }
+
+
 }
