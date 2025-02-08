@@ -27,8 +27,17 @@ public class TicTacToeGame {
                     board.printBoard();
                     System.out.println("Gracz " + currentPlayer + " wygrywa!");
                     gameOn = false;
+                } else if (board.isFull()) {
+                    board.printBoard();
+                    System.out.println("Remis");
+                    gameOn = false;
+                } else {
+                    currentPlayer = (currentPlayer == 'X' ? 'O' : 'X');
                 }
+            } else {
+                System.out.println("Nieprawidłowy ruch, spróbuj ponownie.");
             }
         }
+        scanner.close();
     }
 }
