@@ -1,5 +1,6 @@
 package com.kodilla.tictactoemaster.tic_tac_toe;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -18,9 +19,23 @@ public class TicTacToeGame {
 
         while (gameOn) {
         board.printBoard();
-        System.out.println("Player " + currentPlayer + "'s turn");
-            int row = scanner.nextInt();
-            int col = scanner.nextInt();
+//        System.out.println("Player " + currentPlayer + "'s turn");
+//            int row = scanner.nextInt();
+//            int col = scanner.nextInt();
+            int row = -1, col = -1;
+            boolean validInput = false;
+
+            while (!validInput) {
+                try {
+                    System.out.println("Gracz " + currentPlayer + ", podaj wiersz i kolumnę (0-2): ");
+                    row = scanner.nextInt();
+                    col = scanner.nextInt();
+                    validInput = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Nieprawidłowe dane, podaj dwie liczby od 0 do 2.");
+                    scanner.nextLine();
+                }
+            }
 
             if (board.makeMove(row, col, currentPlayer)) {
                 if(board.checkWin(currentPlayer)) {
