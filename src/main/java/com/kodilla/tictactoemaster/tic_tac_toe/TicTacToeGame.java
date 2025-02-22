@@ -25,16 +25,23 @@ public class TicTacToeGame {
             int row = -1, col = -1;
             boolean validInput = false;
 
-            while (!validInput) {
-                try {
-                    System.out.println("Gracz " + currentPlayer + ", podaj wiersz i kolumnę (0-2): ");
-                    row = scanner.nextInt();
-                    col = scanner.nextInt();
-                    validInput = true;
-                } catch (InputMismatchException e) {
-                    System.out.println("Nieprawidłowe dane, podaj dwie liczby od 0 do 2.");
-                    scanner.nextLine();
+            if (currentPlayer == 'X') {
+                while (!validInput) {
+                    try {
+                        System.out.println("Gracz " + currentPlayer + ", podaj wiersz i kolumnę (0-2): ");
+                        row = scanner.nextInt();
+                        col = scanner.nextInt();
+                        validInput = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Nieprawidłowe dane, podaj dwie liczby od 0 do 2.");
+                        scanner.nextLine();
+                    }
                 }
+            }else {
+                System.out.println("Komputer wykonuje ruch...");
+                int[] move = board.getRandomMove();
+                row = move[0];
+                col = move[1];
             }
 
             if (board.makeMove(row, col, currentPlayer)) {

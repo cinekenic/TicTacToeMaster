@@ -1,5 +1,7 @@
 package com.kodilla.tictactoemaster.tic_tac_toe;
 
+import java.util.Random;
+
 class Board {
     private char[][] board;
 
@@ -63,5 +65,15 @@ class Board {
             }
         }
         return true;
+    }
+
+    public int[] getRandomMove() {
+        Random random = new Random();
+        int row , col;
+        do{
+            row = random.nextInt(3);
+            col = random.nextInt(3);
+        } while (board[row][col] != ' ');
+        return new int[]{row, col};
     }
 }
