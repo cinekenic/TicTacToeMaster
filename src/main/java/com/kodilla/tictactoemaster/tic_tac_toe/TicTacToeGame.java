@@ -6,13 +6,17 @@ import java.util.Scanner;
 public class TicTacToeGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Wybierz tryb gry: (1) 3x3 (2) 10x10 do pięciu");
 
 //        System.out.print("Podaj swoje imię: ");
 //        String name = scanner.nextLine();
 //        System.out.println("Witaj, " + name + "!");
 
+        int choice = scanner.nextInt();
+        int size = (choice == 1) ? 3 : 10;
+        int winCondition = (choice == 1) ? 3 : 5;
 
-        Board board = new Board();
+        Board board = new Board(size, winCondition);
         char currentPlayer = 'X';
         boolean gameOn = true;
 
@@ -28,12 +32,12 @@ public class TicTacToeGame {
             if (currentPlayer == 'X') {
                 while (!validInput) {
                     try {
-                        System.out.println("Gracz " + currentPlayer + ", podaj wiersz i kolumnę (0-2): ");
+                        System.out.println("Gracz X, podaj wiersz i kolumnę (0-" + (size - 1) + "):");
                         row = scanner.nextInt();
                         col = scanner.nextInt();
                         validInput = true;
                     } catch (InputMismatchException e) {
-                        System.out.println("Nieprawidłowe dane, podaj dwie liczby od 0 do 2.");
+                        System.out.println("Nieprawidłowe dane, podaj dwie liczby.");
                         scanner.nextLine();
                     }
                 }
